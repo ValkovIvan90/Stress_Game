@@ -1,7 +1,37 @@
+import { FormEvent, useEffect, useState } from "react";
 import TypewriterComponent from "typewriter-effect";
+
+import { assertIsFormFieldElement } from "../utilities/getInputValue";
+import MessageNot from "../utilities/MessageNot";
+
 
 export default function Home() {
 
+
+    const [validationMsg, setValidationMsg] = useState("");
+    const [isError, setIsError] = useState<boolean>(false);
+    const [msg, setMsg] = useState("");
+
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        const firstField = e.currentTarget[0];
+        assertIsFormFieldElement(firstField);
+        setMsg(firstField.value)
+
+        if (firstField.value.length < 5 || firstField.value.length > 15) {
+            setValidationMsg('The Nickname should be between 5 and 15 characters long!');
+        }
+    }
+
+    useEffect(() => {
+        if (msg.length < 5 || msg.length > 15) {
+            setIsError(true);
+        } else {
+            setIsError(false)
+        }
+    }, [msg.length]);
+    
     return (
         <div className="container-fluid min-vh-100" style={{ backgroundImage: `url("/images/dark_st.jpg")`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
             <div className="container py-5 text-center">
@@ -26,15 +56,17 @@ export default function Home() {
             <div className="container py-5">
                 <div className="row">
                     <div className="col-lg-12">
-                        <h4 className="text-white text-center">Enter a Nickname :</h4>
+                        <h4 className="text-white text-center">Enter Your Nickname :</h4>
                     </div>
                     <div className="col-lg-4 mx-auto text-center">
-                        <form>
-                            <div className="m-3">
-                                <input type="text" className="form-control bg-transparent border-secondary small text-white"
-                                    placeholder="Your Nickname*" required name="visitors_name" />
-                            </div>
-                            <button className="btn btn-submit btn-outline-success mt-2 px-5 rounded-pill text-white fw-bold" type="submit">START</button>
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                placeholder="Your Nickname*"
+                                className="form-control bg-transparent border-secondary small text-white mb-4"
+                            />
+                            {isError ? < MessageNot message={validationMsg} msg={msg} /> : null}
+                            <button type="submit" className="btn btn-submit btn-outline-success mt-2 px-5 rounded-pill text-white fw-bold">START</button>
                         </form>
                     </div>
 
