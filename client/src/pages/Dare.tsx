@@ -10,7 +10,7 @@ export default function Dare() {
                     <div className="d-lg-flex d-sm-md-inline-flex justify-content-between  text-center lh-lg fs-3 fw-bolder">
                         <p className="col-lg-4">Do you think that you are one of those who manage to cope in difficult situations?</p>
                         <div className="d-flex flex-column justify-content-center align-items-center">
-                            <p className="col-lg-4 w-50 w-md-sm-70">I challenge <span className="text-danger">YOU</span> to test your skills!</p>
+                            <p className="col-lg-4 w-50 w-md-sm-70"><span className="text-danger">I</span> challenge <span className="text-danger">YOU</span> to test your Skills!</p>
                             <Link to="/home" className="btn btn-outline-info  border-2 fw-bold rounded-pill btn-lg">Are you Ready ?</Link>
                         </div>
                     </div>
