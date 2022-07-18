@@ -21,8 +21,24 @@ export default function Home() {
                                 .start();
                         }}
                     />
-
                 </h2>
+            </div>
+            <div className="container py-5">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <h4 className="text-white text-center">Enter a Nickname :</h4>
+                    </div>
+                    <div className="col-lg-4 mx-auto text-center">
+                        <form>
+                            <div className="m-3">
+                                <input type="text" className="form-control bg-transparent border-secondary small text-white"
+                                    placeholder="Your Nickname*" required name="visitors_name" />
+                            </div>
+                            <button className="btn btn-submit btn-outline-success mt-2 px-5 rounded-pill text-white fw-bold" type="submit">START</button>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
     );
