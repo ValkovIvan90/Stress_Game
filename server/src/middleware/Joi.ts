@@ -21,9 +21,6 @@ export const Schemas = {
     user: {
         create: Joi.object<IUser>({
             name: Joi.string().required()
-        }),
-        update: Joi.object<IUser>({
-            name: Joi.string().required()
         })
     }
 };

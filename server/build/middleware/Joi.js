@@ -29,26 +29,9 @@ const ValidateJoi = (schema) => {
 };
 exports.ValidateJoi = ValidateJoi;
 exports.Schemas = {
-    author: {
+    user: {
         create: joi_1.default.object({
             name: joi_1.default.string().required()
-        }),
-        update: joi_1.default.object({
-            name: joi_1.default.string().required()
-        })
-    },
-    book: {
-        create: joi_1.default.object({
-            author: joi_1.default.string()
-                .regex(/^[0-9a-fA-F]{24}$/)
-                .required(),
-            title: joi_1.default.string().required()
-        }),
-        update: joi_1.default.object({
-            author: joi_1.default.string()
-                .regex(/^[0-9a-fA-F]{24}$/)
-                .required(),
-            title: joi_1.default.string().required()
         })
     }
 };
