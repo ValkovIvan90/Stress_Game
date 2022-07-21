@@ -18,7 +18,6 @@ type UserProviderChildren = {
 
 export const UserProvider = ({ children }: UserProviderChildren) => {
 
-
     const [userData, setUserData] = useLocalStorage('user', {
         _id: '',
         name: ''

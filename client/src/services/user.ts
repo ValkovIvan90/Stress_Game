@@ -8,6 +8,6 @@ export function reg_user(name: string) {
             'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({name})
-    });
+        body: JSON.stringify({ name })
+    }).then();
 }

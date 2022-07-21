@@ -5,7 +5,7 @@ import { UserProvider } from "./context/UserDataContext";
 
 import Dare from "./pages/Dare";
 import Home from "./pages/Home";
-
+import Game from "./components/Game/GameStart";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dare />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/game" element={<Game />} />
         </Routes>
       </Container>
     </UserProvider>

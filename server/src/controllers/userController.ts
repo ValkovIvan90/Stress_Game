@@ -2,20 +2,28 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import User from "../models/User";
 
+type BodyValue = {
+    name: string;
+}
 
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { name }: BodyValue = req.body;
+    const existingUserName = await User.findOne({ name: { $regex: name, $options: 'i' } });
 
-const createUser = (req: Request, res: Response, next: NextFunction) => {
-    const { name } = req.body;
+    if (name.length > 5 && name.length < 15 && !existingUserName) {
+        const user = new User({
+            _id: new mongoose.Types.ObjectId(),
+            name
+        });
 
-    const user = new User({
-        _id: new mongoose.Types.ObjectId(),
-        name
-    });
+        return user
+            .save()
+            .then(user => res.status(201).json({ user }))
+            .catch((error) => res.status(500).json({ error }))
+    } else if (existingUserName) { 
+        res.status(500).json({message:"Failed! Name is already in use!"})
+    }
 
-    return user
-        .save()
-        .then(user => res.status(201).json({ user }))
-        .catch((error) => res.status(500).json({ error }))
 }
 const readUser = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.authorId;
