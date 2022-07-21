@@ -10,7 +10,7 @@ import Game from "./components/Game/GameStart";
 function App() {
   return (
     <UserProvider>
-      <Container className="m-0 p-0 min-vw-100 overflow-hidden">
+      <Container className="m-0 p-0 min-vw-100">
         <Routes>
           <Route path="/" element={<Dare />} />
           <Route path="/home" element={<Home />} />

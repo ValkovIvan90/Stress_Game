@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState, useContext, ReactNode } from "react";
+import { FormEvent, useEffect, useState, useContext } from "react";
 import TypewriterComponent from "typewriter-effect";
 
 import { useNavigate } from 'react-router-dom';
@@ -33,10 +33,10 @@ export default function Home() {
             setValidationMsg('The Nickname should be between 5 and 15 characters long!');
         } else {
             try {
-
                 reg_user(firstField.value).then(res => {
                     if (res.ok) {
                         res.json().then(data => {
+                            setValidationMsg("")
                             setUserData(data);
                             setIsload(true);
                             setTimeout(() => {
@@ -59,10 +59,8 @@ export default function Home() {
     useEffect(() => {
         if (msg.length < 5 || msg.length > 15 || validationMsg.length) {
             setIsError(true);
-        } else {
-            setIsError(false)
         }
-    }, [msg.length]);
+    }, [msg.length, validationMsg]);
 
     return (
         <>
