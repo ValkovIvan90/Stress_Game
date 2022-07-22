@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type MSG = {
-    message: string
-    msg: string
+    message: string[]
 }
 
-export default function MessageNot({ message, msg }: MSG) {
+export default function MessageNot({ message }: MSG) {
 
     const [visible, setIsvisible] = useState(false);
 
@@ -13,13 +12,15 @@ export default function MessageNot({ message, msg }: MSG) {
         if (!message) {
             setIsvisible(false)
             return;
+        } else {
+            setIsvisible(true);
+            const timer = setTimeout(() => {
+                setIsvisible(false)
+            }, 5000)
+            return () => clearTimeout(timer);
         }
-        setIsvisible(true);
-        const timer = setTimeout(() => {
-            setIsvisible(false)
-        }, 5000)
-        return () => clearTimeout(timer);
-    }, [msg.length])
+
+    }, [message])
 
     return (
         <>

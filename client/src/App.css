@@ -8,5 +8,5 @@
 body,
 html {
   font-family: "Roboto", sans-serif!important;
-  overflow: auto;
+  overflow: hidden;
 }

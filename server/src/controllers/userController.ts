@@ -8,9 +8,10 @@ type BodyValue = {
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
     const { name }: BodyValue = req.body;
-    const existingUserName = await User.findOne({ name: { $regex: name, $options: 'i' } });
+    const existingPerson = await User.findOne({ name });
 
-    if (name.length > 5 && name.length < 15 && !existingUserName) {
+
+    if (name.length > 5 && name.length < 15 && !existingPerson || existingPerson == null) {
         const user = new User({
             _id: new mongoose.Types.ObjectId(),
             name
@@ -20,8 +21,8 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
             .save()
             .then(user => res.status(201).json({ user }))
             .catch((error) => res.status(500).json({ error }))
-    } else if (existingUserName) { 
-        res.status(500).json({message:"Failed! Name is already in use!"})
+    } else if (existingPerson) {
+        res.status(500).json({ message: "Failed! Name is already in use!" })
     }
 
 }

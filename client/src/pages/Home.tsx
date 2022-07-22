@@ -16,27 +16,25 @@ export default function Home() {
 
     const { userData, setUserData }: any = useContext(UserContext);
 
-    const [validationMsg, setValidationMsg] = useState("");
+    const [validationMsg, setValidationMsg] = useState<string[]>([]);
     const [isError, setIsError] = useState<boolean>(false);
     const [isLoad, setIsload] = useState<boolean>(false);
 
-    const [msg, setMsg] = useState("");
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const firstField = e.currentTarget[0];
         assertIsFormFieldElement(firstField);
-        setMsg(firstField.value);
+
 
         if (firstField.value.length < 5 || firstField.value.length > 15) {
-            setValidationMsg('The Nickname should be between 5 and 15 characters long!');
+            setValidationMsg(['The Nickname should be between 5 and 15 characters long!']);
         } else {
             try {
                 reg_user(firstField.value).then(res => {
                     if (res.ok) {
                         res.json().then(data => {
-                            setValidationMsg("")
                             setUserData(data);
                             setIsload(true);
                             setTimeout(() => {
@@ -45,6 +43,7 @@ export default function Home() {
                         });
                     } else {
                         res.json().then(msg => {
+                            setIsError(false)
                             setValidationMsg(msg.message)
                         })
                     }
@@ -57,10 +56,10 @@ export default function Home() {
     };
 
     useEffect(() => {
-        if (msg.length < 5 || msg.length > 15 || validationMsg.length) {
+        if (validationMsg) {
             setIsError(true);
         }
-    }, [msg.length, validationMsg]);
+    }, [validationMsg, isError]);
 
     return (
         <>
@@ -102,7 +101,7 @@ export default function Home() {
                                     placeholder="Your Nickname*"
                                     className="form-control bg-transparent border-secondary small text-white mb-4"
                                 />
-                                {isError ? < MessageNot message={validationMsg} msg={msg} /> : null}
+                                {isError ? < MessageNot message={validationMsg} /> : null}
                                 <button type="submit" className="btn btn-submit btn-outline-success mt-2 px-5 rounded-pill text-white fw-bold">START</button>
                             </form>
                         </div>
