@@ -14,7 +14,7 @@ import UserContext from "../context/UserDataContext";
 export default function Home() {
     const navigate = useNavigate();
 
-    const { userData, setUserData }: any = useContext(UserContext);
+    const { setUserData }: any = useContext(UserContext);
 
     const [validationMsg, setValidationMsg] = useState<string[]>([]);
     const [isError, setIsError] = useState<boolean>(false);
@@ -35,6 +35,7 @@ export default function Home() {
                 reg_user(firstField.value).then(res => {
                     if (res.ok) {
                         res.json().then(data => {
+
                             setUserData(data);
                             setIsload(true);
                             setTimeout(() => {

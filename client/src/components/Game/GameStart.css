@@ -1,17 +1,24 @@
-
-
-.main{
-    position: relative;
+.main {
+  position: relative;
 }
-.content{
-    min-width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0 20px;
-     
+.content {
+  min-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 20px;
 }
-#detach-button-host{
-    display: none;
+#detach-button-host {
+  display: none;
+}
+
+.table span {
+  border: 1px solid;
+  margin: 5px;
+  font-size: 15px;
+  width: 50%;
+  border-radius: 10px;
+  text-align: center;
+  color: rgb(92, 224, 207);
 }
