@@ -1,12 +1,12 @@
 import { createContext, ReactNode } from 'react';
 import useLocalStorage from '../hooks/UseLocalStorage';
 
+export type UserD = {
+    _id: string;
+    name: string;
+}
 type AppContextType = {
-    userData: {
-        _id: string;
-        name: string;
-
-    }
+    userData: UserD;
     setUserData?: () => string | undefined;
 }
 
@@ -22,10 +22,14 @@ export const UserProvider = ({ children }: UserProviderChildren) => {
         _id: '',
         name: ''
     })
-
+   
+    const value = {
+        userData: userData,
+        setUserData : setUserData
+    }
     return (
         <UserContext.Provider
-            value={{ userData, setUserData }}>
+            value={value}>
             {children}
         </UserContext.Provider>
     );

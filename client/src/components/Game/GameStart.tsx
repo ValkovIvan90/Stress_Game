@@ -10,12 +10,11 @@ import Clock from './Clock/Clock';
 import UserContext from '../../context/UserDataContext';
 
 
-type Props = {}
 
 export default function GameStart() {
 
-    const { userData }: any = useContext(UserContext);
-
+    const ctx = useContext(UserContext);
+     
     useEffect(() => {
         // const audio = new Audio(sound);
         // audio.loop = true;
@@ -48,24 +47,13 @@ export default function GameStart() {
                             </p>
                         </div>
                         <div className="options row pt-5 d-flex justify-content-between text-center">
-                            <div className="col-lg-5 col-md-4 bg-primary p-2 m-2  rounded-pill">
-                                <p className='text-white m-0'>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div className="col-lg-5 col-md-4 bg-primary p-2 m-2  rounded-pill">
-                                <p className='text-white m-0'>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div className="col-lg-5 col-md-4 bg-primary p-2 m-2  rounded-pill">
-                                <p className='text-white m-0'>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div className="col-lg-5 col-md-4 bg-primary p-2 m-2  rounded-pill">
-                                <p className='text-white m-0'>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                          
                         </div>
                     </div>
                 </div>
                 <div className="points col-lg-2 col-md-4  ms-5">
                     <div className='user-name mb-5 text-center'>
-                        <span className='bg-white opacity-50 text-warning fw-bold p-2 rounded-pill'>&#11088;  {userData.user.name}</span>
+                        <span className='bg-white opacity-50 text-warning fw-bold p-2 rounded-pill'>&#11088;  {ctx?.userData.name}</span>
                     </div>
                     <div className='table d-flex flex-column align-items-center'>
                         <span>15 &#127937; 1500</span>
