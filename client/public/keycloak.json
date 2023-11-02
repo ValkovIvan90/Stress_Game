@@ -1,0 +1,7 @@
+{
+    "realm": "RealmOne",
+    "auth-server-url": "http://localhost:3010/auth",
+    "ssl-required": "external",
+    "resource": "stress_game",
+    "public-client" : true
+  }
